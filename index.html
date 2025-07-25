@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Kyro Agents</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .intro-text {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #555;
+      margin-top: -15px;
+      margin-bottom: 30px;
+    }
+
+    .about {
+      margin-top: 50px;
+      text-align: center;
+      font-size: 0.95rem;
+      color: #777;
+      border-top: 1px solid #ddd;
+      padding-top: 20px;
+    }
+
+    .about strong {
+      color: #333;
+    }
+
+    .agent-card {
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .agent-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      background-color: #eef6ff;
+    }
+
+    .fade-in {
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container fade-in">
+    <h1>Welcome to AI Kyro Agents</h1>
+    <p class="intro-text">Choose an agent to get instant assistance from AI – whether for customer queries or wellness insights.</p>
+
+    <div class="agent-grid">
+      <a href="{{ url_for('customer_support') }}" class="agent-card">
+        <img src="https://img.icons8.com/ios-filled/100/000000/user-male-circle.png" alt="Customer Agent" />
+        <h3>🧑‍💼 Customer Support Agent</h3>
+      </a>
+      <a href="{{ url_for('genetic_agent') }}" class="agent-card">
+        <img src="https://img.icons8.com/ios-filled/100/000000/dna-helix.png" alt="Genetic Agent" />
+        <h3>🧬 Genetic Wellness Agent</h3>
+      </a>
+    </div>
+
+    <div class="about">
+      <p><strong>Powered by Athul N A</strong> for the <strong>AI Kyro Agents Internship Assignment</strong></p>
+      <p>Built with Flask, HTML/CSS, and the Google Gemini API for AI-powered interaction.</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Genetic Wellness Agent</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-link">&larr; Back</a>
+    <h2>Ask the Genetic Wellness Agent</h2>
+    <form id="question-form">
+      <input type="text" id="question" name="question" required placeholder="Ask your question here..." />
+      <button type="submit" class="button">Ask</button>
+    </form>
+
+    <div id="loading" class="hidden loading">Loading...</div>
+    <div id="answer" class="answer-box hidden"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('question-form');
+    const loading = document.getElementById('loading');
+    const answerBox = document.getElementById('answer');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const question = document.getElementById('question').value;
+      loading.classList.remove('hidden');
+      answerBox.classList.add('hidden');
+
+      const response = await fetch('/ask-genetic', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `question=${encodeURIComponent(question)}`
+      });
+
+      const data = await response.json();
+      loading.classList.add('hidden');
+      answerBox.textContent = data.answer;
+      answerBox.classList.remove('hidden');
+    });
+  </script>
+</body>
+</html>

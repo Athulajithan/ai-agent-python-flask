@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Customer Support FAQs</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-link">&larr; Back</a>
+    <h2>Customer Support FAQs</h2>
+    <div class="faq-list">
+      {% for item in faqs %}
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleAnswer('faq{{ loop.index }}')">
+          {{ item.question }}
+          <span id="icon-faq{{ loop.index }}">&#9660;</span>
+        </button>
+        <div id="faq{{ loop.index }}" class="faq-answer hidden">
+          {{ item.answer }}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <script>
+    function toggleAnswer(id) {
+      const content = document.getElementById(id);
+      const icon = document.getElementById("icon-" + id);
+      content.classList.toggle('hidden');
+      icon.innerHTML = content.classList.contains('hidden') ? '&#9660;' : '&#9650;';
+    }
+  </script>
+</body>
+</html>
